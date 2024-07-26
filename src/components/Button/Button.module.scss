@@ -1,0 +1,9 @@
+@use '../../styles/vars.scss';
+
+.button {
+    background-color: vars.$bg-white;
+}
+
+.active {
+    background-color: vars.$bg-black;
+}

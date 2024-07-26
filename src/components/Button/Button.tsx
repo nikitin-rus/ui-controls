@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import styles from "./Button.module.scss";
 
 interface Props {
     value: string;
@@ -7,8 +8,21 @@ interface Props {
 const Button = function ({
     value
 }: Props) {
+    const [isActive, setIsActive] = useState(false);
+
+    function handleClick() {
+        setIsActive(!isActive);
+    }
+
     return (
-        <button>{value}</button>
+        <button className={[
+            styles.button,
+            isActive ? styles.active : ""
+        ].join(" ")}
+            onClick={handleClick}
+        >
+            {value}
+        </button>
     );
 }
 
