@@ -20,7 +20,6 @@ export default {
         }),
         postcss({
             extract: false,
-            modules: true,
             use: ["sass"]
         }),
     ],

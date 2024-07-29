@@ -1,29 +1,60 @@
-import React, { useState } from "react";
-import styles from "./Button.module.scss";
+import React, { ButtonHTMLAttributes, forwardRef, memo } from "react";
+import { getClassNames } from "../../helpers/getClassName";
+import "./Button.scss";
 
-interface Props {
-    value: string;
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+    value?: string,
+    theme?: "default" | "blue",
+    size?: "default" | "small"
+    iconLeft?: JSX.Element,
+    iconRight?: JSX.Element,
 }
 
-const Button = function ({
-    value
-}: Props) {
-    const [isActive, setIsActive] = useState(false);
-
-    function handleClick() {
-        setIsActive(!isActive);
-    }
-
+function isSquare(value?: string, iconLeft?: JSX.Element, iconRight?: JSX.Element) {
     return (
-        <button className={[
-            styles.button,
-            isActive ? styles.active : ""
-        ].join(" ")}
-            onClick={handleClick}
-        >
-            {value}
-        </button>
+        value === undefined &&
+        (
+            (iconLeft === undefined && iconRight !== undefined)
+            || (iconRight === undefined && iconLeft !== undefined)
+        )
     );
 }
 
-export default Button;
+const Button = memo(forwardRef<HTMLButtonElement, Props>(
+    function ({
+        className,
+        value,
+        theme = "default",
+        size = "default",
+        type = "button",
+        iconLeft,
+        iconRight,
+        ...rest
+    }, ref) {
+        const _className = "button";
+        const classNames = getClassNames(_className, className, {
+            [_className + "_blue"]: theme === "blue",
+            [_className + "_small"]: size === "small",
+            [_className + "_square"]: isSquare(value, iconLeft, iconRight),
+        });
+
+        return (
+            <button className={classNames}
+                ref={ref}
+                {...rest}
+            >
+                {iconLeft}
+
+                {value && (
+                    <p className={_className + "__text"}>
+                        {value}
+                    </p>
+                )}
+
+                {iconRight}
+            </button>
+        );
+    }
+));
+
+export { Button };
