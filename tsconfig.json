@@ -24,9 +24,10 @@
         "skipLibCheck": true,
     },
     "include": [
-        "src/**/*"
+        "src/**/*",
+        "index.d.ts",
     ],
     "exclude": [
-        "src/**/*.stories.tsx"
+        "src/**/*.stories.tsx",
     ]
 }
