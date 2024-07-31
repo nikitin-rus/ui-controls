@@ -12,14 +12,14 @@ type Story = StoryObj<typeof Button>;
 
 export const Default: Story = {
     args: {
-        children: "Button"
+        children: "Button",
     }
 };
 
 export const DefaultSmall: Story = {
     args: {
         children: "Button",
-        size: "small"
+        size: "small",
     }
 };
 

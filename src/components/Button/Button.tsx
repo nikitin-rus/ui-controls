@@ -1,4 +1,4 @@
-import React, { forwardRef, memo } from "react";
+import { forwardRef, memo } from "react";
 import { ButtonType, ButtonProps } from "./Button.styled";
 import * as S from "./Button.styled";
 
