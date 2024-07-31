@@ -1,58 +1,37 @@
-import React, { ButtonHTMLAttributes, forwardRef, memo } from "react";
-import { getClassNames } from "../../helpers/getClassName";
-import "./Button.scss";
+import React, { forwardRef, memo } from "react";
+import { ButtonType, ButtonProps } from "./Button.styled";
+import * as S from "./Button.styled";
 
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-    value?: string,
-    theme?: "default" | "blue",
-    size?: "default" | "small"
-    iconLeft?: JSX.Element,
-    iconRight?: JSX.Element,
+function getButtonComponent(type: ButtonType) {
+    switch (type) {
+        case "default":
+            return S.DefaultButton;
+        case "blue":
+            return S.BlueButton;
+        default:
+            return S.DefaultButton;
+    }
 }
 
-function isSquare(value?: string, iconLeft?: JSX.Element, iconRight?: JSX.Element) {
-    return (
-        value === undefined &&
-        (
-            (iconLeft === undefined && iconRight !== undefined)
-            || (iconRight === undefined && iconLeft !== undefined)
-        )
-    );
-}
-
-const Button = memo(forwardRef<HTMLButtonElement, Props>(
+const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(
     function ({
-        className,
-        value,
-        theme = "default",
+        children,
+        variant = "default",
         size = "default",
         type = "button",
-        iconLeft,
-        iconRight,
         ...rest
     }, ref) {
-        const _className = "button";
-        const classNames = getClassNames(_className, className, {
-            [_className + "_blue"]: theme === "blue",
-            [_className + "_small"]: size === "small",
-            [_className + "_square"]: isSquare(value, iconLeft, iconRight),
-        });
+        const Component = getButtonComponent(variant);
 
         return (
-            <button className={classNames}
-                ref={ref}
+            <Component ref={ref}
+                variant={variant}
+                size={size}
+                type={type}
                 {...rest}
             >
-                {iconLeft}
-
-                {value && (
-                    <p className={_className + "__text"}>
-                        {value}
-                    </p>
-                )}
-
-                {iconRight}
-            </button>
+                {children}
+            </Component>
         );
     }
 ));
