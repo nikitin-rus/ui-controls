@@ -13,7 +13,8 @@ export interface ITheme {
     '--font-white': string;
     '--font-placeholder-gray': string;
     '--shadow': string;
-}
+    '--font-family': string;
+};
 
 export const Theme: ITheme = {
     '--bg-white': '#FFFFFF',
@@ -30,4 +31,5 @@ export const Theme: ITheme = {
     '--font-white': '#FFFFFF',
     '--font-placeholder-gray': '#646464',
     '--shadow': '0px 0px 25px 0px rgba(0, 0, 0, 0.10)',
+    '--font-family': 'Open Sans, sans-serif',
 };

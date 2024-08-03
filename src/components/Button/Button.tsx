@@ -1,22 +1,30 @@
-import { forwardRef, memo } from "react";
-import { ButtonType, ButtonProps } from "./Button.styled";
+import { ButtonHTMLAttributes, forwardRef, memo } from "react";
 import * as S from "./Button.styled";
+
+export type ButtonType =
+    "primary"
+    | "secondary";
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    variant?: ButtonType;
+    size?: "default" | "small";
+}
 
 function getButtonComponent(type: ButtonType) {
     switch (type) {
-        case "default":
-            return S.DefaultButton;
-        case "blue":
-            return S.BlueButton;
+        case "primary":
+            return S.ButtonPrimary;
+        case "secondary":
+            return S.ButtonSecondary;
         default:
-            return S.DefaultButton;
+            return S.ButtonPrimary;
     }
 }
 
 const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(
     function ({
         children,
-        variant = "default",
+        variant = "primary",
         size = "default",
         type = "button",
         ...rest
@@ -25,7 +33,6 @@ const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(
 
         return (
             <Component ref={ref}
-                variant={variant}
                 size={size}
                 type={type}
                 {...rest}

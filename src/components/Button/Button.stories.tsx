@@ -4,36 +4,34 @@ import { Button } from "./Button";
 
 const meta: Meta<typeof Button> = {
     component: Button,
+    args: {
+        children: "Button",
+        disabled: false,
+    },
+    argTypes: {
+        variant: {
+            options: ["primary", "secondary"],
+            control: "select",
+        },
+        size: {
+            options: ["default", "small"],
+            control: "radio",
+        },
+    },
 };
 
 export default meta;
 
 type Story = StoryObj<typeof Button>;
 
-export const Default: Story = {
+export const Primary: Story = {
     args: {
-        children: "Button",
-    }
+        variant: "primary",
+    },
 };
 
-export const DefaultSmall: Story = {
+export const Secondary: Story = {
     args: {
-        children: "Button",
-        size: "small",
-    }
-};
-
-export const Blue: Story = {
-    args: {
-        children: "Button",
-        variant: "blue",
-    }
-};
-
-export const BlueSmall: Story = {
-    args: {
-        children: "Button",
-        variant: "blue",
-        size: "small",
-    }
+        variant: "secondary",
+    },
 };

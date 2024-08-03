@@ -1,14 +1,14 @@
 import { forwardRef, memo, SVGProps } from "react";
-import { Theme } from "../../styles/theme";
+import { cvar } from "../../../helpers/StyleHelper";
 
-const Chevron = memo(forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>(
+const ChevronDown = memo(forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>(
     function ({ ...rest }, ref) {
         return (
             <svg xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
                 width="24px"
                 height="24px"
-                fill={Theme["--stroke-black"]}
+                fill={cvar("--stroke-black")}
                 ref={ref}
                 {...rest}
             >
@@ -18,4 +18,4 @@ const Chevron = memo(forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>(
     }
 ));
 
-export { Chevron };
+export { ChevronDown };
