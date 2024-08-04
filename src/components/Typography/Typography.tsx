@@ -8,6 +8,8 @@ export type TypographyType =
 interface TypographyProps {
     type?: TypographyType;
     children?: ReactNode;
+    isError?: boolean;
+    isSuccess?: boolean;
 }
 
 function getTypographyComponent(type: TypographyType) {
@@ -24,11 +26,13 @@ function getTypographyComponent(type: TypographyType) {
 const Typography = function ({
     type = "body1",
     children,
+    isError = false,
+    isSuccess = false,
 }: TypographyProps) {
     const Component = getTypographyComponent(type);
 
     return (
-        <Component>
+        <Component $isError={isError} $isSuccess={isSuccess}>
             {children}
         </Component>
     );

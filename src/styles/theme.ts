@@ -10,6 +10,7 @@ export interface ITheme {
     '--stroke-light-green': string;
     '--font-black': string;
     '--font-red': string;
+    '--font-light-green': string;
     '--font-white': string;
     '--font-placeholder-gray': string;
     '--shadow': string;
@@ -28,6 +29,7 @@ export const Theme: ITheme = {
     '--stroke-light-green': '#2AE24C',
     '--font-black': '#282828',
     '--font-red': '#E22A2A',
+    '--font-light-green': '#2AE24C',
     '--font-white': '#FFFFFF',
     '--font-placeholder-gray': '#646464',
     '--shadow': '0px 0px 25px 0px rgba(0, 0, 0, 0.10)',

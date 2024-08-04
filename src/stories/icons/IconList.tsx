@@ -5,7 +5,7 @@ const IconList = function () {
     return (
         <StyledIconList>
             {Object.values(icons).map((Icon, index) =>
-                <Icon width={48} height={48} key={index} />
+                <Icon key={index} />
             )}
         </StyledIconList>
     );
