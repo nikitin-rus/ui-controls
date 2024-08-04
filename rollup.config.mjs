@@ -17,8 +17,9 @@ export default {
             declaration: true,
             declarationDir: 'dist',
             exclude: [
+                "src/stories/**/*.tsx",
                 "src/**/*.stories.tsx",
-            ]
+            ],
         }),
     ],
     external: ['react', 'react-dom'],

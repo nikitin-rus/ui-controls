@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { IconList } from "./IconList";
 
 const meta: Meta<typeof HTMLDivElement> = {
-    title: "Components/Icons",
+    title: "Icons",
     component: IconList,
 };
 

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { cvar } from "../../helpers/StyleHelper";
-import { ChevronDown } from "../IconList";
+import { ChevronDown } from "../Icons";
 
 export const Select = styled.div<{ disabled?: boolean }>`
     display: inline-flex;  

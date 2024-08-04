@@ -1,5 +1,5 @@
 import { forwardRef, memo, SVGProps } from "react";
-import { cvar } from "../../../helpers/StyleHelper";
+import { cvar } from "../../helpers/StyleHelper";
 
 const ChevronDown = memo(forwardRef<SVGSVGElement, SVGProps<SVGSVGElement>>(
     function ({ ...rest }, ref) {
