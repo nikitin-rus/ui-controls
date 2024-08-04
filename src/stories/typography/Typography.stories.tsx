@@ -1,23 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Typography } from "../../components";
+import { TypographyList } from "./TypographyList";
 
-const meta: Meta<typeof Typography> = {
+const meta: Meta<typeof TypographyList> = {
     title: "Typography",
-    component: Typography,
-    argTypes: {
-        type: {
-            control: "select",
-        }
-    }
+    component: TypographyList,
 };
 
 export default meta;
 
-type Story = StoryObj<typeof Typography>;
+type Story = StoryObj<typeof TypographyList>;
 
 export const Default: Story = ({
     name: "Typography",
-    args: {
-        children: "Typography",
-    }
 });
