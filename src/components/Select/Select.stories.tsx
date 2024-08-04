@@ -3,6 +3,9 @@ import { Select } from "./Select";
 
 const meta: Meta<typeof Select> = {
     component: Select,
+    args: {
+        disabled: false,
+    }
 };
 
 export default meta;

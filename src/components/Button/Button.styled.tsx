@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { cvar } from "../../helpers/StyleHelper";
 
 const StyledButton = styled.button<{ size: "default" | "small" }>`
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     column-gap: ${({ size }) => size === "small" ? "4px" : "8px"};

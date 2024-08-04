@@ -2,19 +2,24 @@ import styled from "styled-components";
 import { cvar } from "../../helpers/StyleHelper";
 import { ChevronDown } from "../IconList";
 
-export const Select = styled.div`
+export const Select = styled.div<{ disabled?: boolean }>`
+    display: inline-flex;  
     position: relative;
     white-space: nowrap;
     user-select: none;
     cursor: pointer;
 
-    &:disabled {
-        cursor: not-allowed;
-        opacity: 0.75;
-    }
+    ${({ disabled }) => {
+        if (disabled === true) {
+            return `
+                opacity: 0.75;
+                cursor: not-allowed;
+            `;
+        }
+    }}
 `;
 
-export const Bar = styled.div`
+export const Bar = styled.div<{ disabled?: boolean }>`
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -29,6 +34,14 @@ export const Bar = styled.div`
     &:not([disabled]):hover {
         background-color: ${cvar("--bg-hover-gray")};
     }
+
+    ${({ disabled }) => {
+        if (disabled === true) {
+            return `
+                pointer-events: none;
+            `;
+        }
+    }}
 `;
 
 export const Options = styled.ul`
@@ -36,7 +49,7 @@ export const Options = styled.ul`
     flex-direction: column;
 
     position: absolute;
-    top: 110%;
+    top: 100%;
     left: 0;
     right: 0;
 
@@ -51,7 +64,7 @@ export const Options = styled.ul`
 export const Option = styled.li`
     display: flex;
     align-items: center;
-    padding: 16px 12px;
+    padding: 8px 12px;
 
     &:hover {
         background-color: ${cvar("--bg-hover-gray")};

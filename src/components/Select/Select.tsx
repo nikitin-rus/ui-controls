@@ -6,6 +6,7 @@ export interface SelectProps {
     options: SelectOption[];
     selectedIndex?: number;
     onSelect?: (selectedIndex: number) => void;
+    disabled?: boolean;
 }
 
 interface SelectOption {
@@ -26,6 +27,7 @@ const Select = memo(forwardRef<HTMLDivElement, SelectProps>(
         options,
         selectedIndex = -1,
         onSelect,
+        disabled = false,
     }, ref) {
         const [isOpened, setIsOpened] = useState(false);
         const barRef = useRef<null | HTMLDivElement>(null);
@@ -61,9 +63,10 @@ const Select = memo(forwardRef<HTMLDivElement, SelectProps>(
         }
 
         return (
-            <S.Select ref={ref}>
+            <S.Select ref={ref} disabled={disabled}>
                 <S.Bar ref={barRef}
                     onClick={handleBarClick}
+                    disabled={disabled}
                 >
                     {isSelectedIndexValid(selectedIndex, options.length) && (
                         <Typography type="body1">
