@@ -7,11 +7,7 @@ const meta: Meta<typeof Select> = {
     component: Select,
     args: {
         disabled: false,
-    },
-    render: (args) => {
-        const [selectedIndex, setSelectedIndex] = useState(0);
-
-        const options = [
+        options: [
             {
                 name: "relevant",
                 value: "По релевантности",
@@ -28,16 +24,14 @@ const meta: Meta<typeof Select> = {
                 name: "expensive",
                 value: "По убыванию цены",
             },
-        ];
-
-        function handleSelect(selectedIndex: number) {
-            setSelectedIndex(selectedIndex);
-        }
+        ]
+    },
+    render: (args) => {
+        const [selectedIndex, setSelectedIndex] = useState(0);
 
         return <Select
             selectedIndex={selectedIndex}
-            options={options}
-            onSelect={handleSelect}
+            onSelect={(selectedIndex) => setSelectedIndex(selectedIndex)}
             {...args}
         />
     }

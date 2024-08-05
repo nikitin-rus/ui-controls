@@ -20,13 +20,9 @@ const meta: Meta<typeof Input> = {
     render: ({ value: initialValue = "", ...args }) => {
         const [value, setValue] = useState(initialValue.toString());
 
-        function handleChange(e: ChangeEvent<HTMLInputElement>) {
-            setValue(e.target.value);
-        }
-
         return <Input
             value={value}
-            onChange={handleChange}
+            onChange={(e) => setValue(e.target.value)}
             {...args}
         />
     },

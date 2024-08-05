@@ -14,21 +14,10 @@ const meta: Meta<typeof Search> = {
     render: ({ value: initialValue = "", ...args }) => {
         const [value, setValue] = useState(initialValue.toString());
 
-        function handleChange(e: ChangeEvent<HTMLInputElement>) {
-            setValue(e.target.value);
-        }
-
-        function handleSearch() { }
-
-        function handleClear() {
-            setValue("");
-        }
-
         return <Search
             value={value}
-            onChange={handleChange}
-            onClear={handleClear}
-            onSearch={handleSearch}
+            onChange={(e) => setValue(e.target.value)}
+            onClear={() => setValue("")}
             {...args}
         />
     },
