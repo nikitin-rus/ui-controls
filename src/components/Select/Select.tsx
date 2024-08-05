@@ -3,7 +3,7 @@ import { Typography } from "../Typography/Typography";
 import * as S from "./Select.styled";
 
 export interface SelectProps {
-    options: SelectOption[];
+    options?: SelectOption[];
     selectedIndex?: number;
     onSelect?: (selectedIndex: number) => void;
     disabled?: boolean;
@@ -24,9 +24,9 @@ function isSelectedIndexValid(selectedIndex: number, optionsLength: number) {
 
 const Select = memo(forwardRef<HTMLDivElement, SelectProps>(
     function ({
-        options,
+        options = [],
         selectedIndex = -1,
-        onSelect,
+        onSelect = () => { },
         disabled = false,
     }, ref) {
         const [isOpened, setIsOpened] = useState(false);
@@ -45,10 +45,7 @@ const Select = memo(forwardRef<HTMLDivElement, SelectProps>(
 
         function handleSelect(selectedIndex: number) {
             setIsOpened(false);
-
-            if (onSelect) {
-                onSelect(selectedIndex);
-            }
+            onSelect(selectedIndex);
         }
 
         function handleOutsideClick(e: PointerEvent) {

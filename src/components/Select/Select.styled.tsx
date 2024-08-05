@@ -47,6 +47,7 @@ export const Bar = styled.div<{ disabled?: boolean }>`
 export const Options = styled.ul`
     display: flex;
     flex-direction: column;
+    padding: 6px 0px;
 
     position: absolute;
     top: 100%;
