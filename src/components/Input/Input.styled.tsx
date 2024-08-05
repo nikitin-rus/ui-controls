@@ -11,16 +11,25 @@ export const InputLabel = styled.label`
     user-select: none;
 `;
 
-export const InputForm = styled.div`
+export const InputForm = styled.div<{ disabled?: boolean }>`
     display: flex;
     flex-direction: column;
     justify-content: center;
     position: relative;
+
+    ${({ disabled }) => {
+        if (disabled === true) {
+            return `
+                opacity: 0.75;
+            `;
+        }
+    }}
 `;
 
 const StyledInput = styled.input<{
     $iconLeft?: boolean,
     $iconRight?: boolean,
+    disabled?: boolean,
 }>`
     padding: 8px 12px;
 
@@ -46,7 +55,6 @@ const StyledInput = styled.input<{
     border-radius: 5px;
 
     &:disabled {
-        opacity: 0.75;
         cursor: not-allowed;
     }
 `;
@@ -73,7 +81,6 @@ const InputIconWrapper = styled.div<{ disabled?: boolean }>`
         if (disabled === true) {
             return `
                 pointer-events: none;
-                opacity: 0.75;  
             `;
         }
     }}

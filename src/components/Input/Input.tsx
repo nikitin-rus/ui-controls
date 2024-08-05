@@ -37,6 +37,7 @@ const Input = memo(forwardRef<HTMLInputElement, InputProps>(
         iconRight,
         onIconLeftClick,
         onIconRightClick,
+        disabled,
         ...rest
     }, ref) {
         const Component = getInputComponent(variant);
@@ -51,10 +52,11 @@ const Input = memo(forwardRef<HTMLInputElement, InputProps>(
                     </S.InputLabel>
                 )}
 
-                <S.InputForm>
+                <S.InputForm disabled={disabled}>
                     {iconLeft && (
                         <S.InputIconWrapperLeft
                             onClick={onIconLeftClick}
+                            disabled={disabled}
                         >
                             {iconLeft}
                         </S.InputIconWrapperLeft>
@@ -63,12 +65,14 @@ const Input = memo(forwardRef<HTMLInputElement, InputProps>(
                     <Component ref={ref}
                         $iconLeft={iconLeft !== undefined}
                         $iconRight={iconRight !== undefined}
+                        disabled={disabled}
                         {...rest}
                     />
 
                     {iconRight && (
                         <S.InputIconWrapperRight
                             onClick={onIconRightClick}
+                            disabled={disabled}
                         >
                             {iconRight}
                         </S.InputIconWrapperRight>
