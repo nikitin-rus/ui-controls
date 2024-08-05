@@ -5,7 +5,8 @@ export type ButtonType =
     "primary"
     | "secondary";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps
+    extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: ButtonType;
     size?: "default" | "small";
 }

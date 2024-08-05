@@ -1,14 +1,16 @@
 import styled from "styled-components";
 import { cvar } from "../../helpers/StyleHelper";
+import { Body2 } from "../Typography/Typography.styled";
 
-export const InputContainer = styled.div`
+export const InputLabel = styled.label`
     display: inline-flex;
     flex-direction: column;
     row-gap: 8px;
 `;
 
-export const InputLabel = styled.label`
-    user-select: none;
+export const InputLabelText = styled(Body2)`
+    align-self: flex-start;
+    cursor: pointer;
 `;
 
 export const InputForm = styled.div<{ disabled?: boolean }>`

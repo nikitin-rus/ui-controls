@@ -1,13 +1,14 @@
 import { forwardRef, InputHTMLAttributes, memo } from "react";
-import * as S from "./Input.styled";
 import { Typography } from "../Typography";
+import * as S from "./Input.styled";
 
 export type InputType =
     "default"
     | "error"
     | "success";
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps
+    extends InputHTMLAttributes<HTMLInputElement> {
     variant?: InputType;
     label?: string;
     error?: string;
@@ -43,14 +44,10 @@ const Input = memo(forwardRef<HTMLInputElement, InputProps>(
         const Component = getInputComponent(variant);
 
         return (
-            <S.InputContainer>
-                {label && (
-                    <S.InputLabel>
-                        <Typography type="body2">
-                            {label}
-                        </Typography>
-                    </S.InputLabel>
-                )}
+            <S.InputLabel>
+                <S.InputLabelText>
+                    {label}
+                </S.InputLabelText>
 
                 <S.InputForm disabled={disabled}>
                     {iconLeft && (
@@ -84,7 +81,7 @@ const Input = memo(forwardRef<HTMLInputElement, InputProps>(
                         {error}
                     </Typography>
                 )}
-            </S.InputContainer>
+            </S.InputLabel>
         );
     }
 ));

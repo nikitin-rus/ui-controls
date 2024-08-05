@@ -1,8 +1,9 @@
-import { ChangeEvent, forwardRef, InputHTMLAttributes, memo, useState } from "react";
+import { forwardRef, InputHTMLAttributes, memo } from "react";
 import { Input } from "../Input";
 import { SearchIcon, Close } from "../Icons";
 
-export interface SearchProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface SearchProps
+    extends InputHTMLAttributes<HTMLInputElement> {
     label?: string;
     onClear?: () => void;
     onSearch?: () => void;
