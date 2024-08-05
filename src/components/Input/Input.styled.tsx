@@ -16,7 +16,6 @@ export const InputForm = styled.div`
     flex-direction: column;
     justify-content: center;
     position: relative;
-
 `;
 
 const StyledInput = styled.input<{
@@ -28,7 +27,7 @@ const StyledInput = styled.input<{
     ${({ $iconLeft }) => {
         if ($iconLeft) {
             return `
-                padding-left: 48px;
+                padding-left: 46px;
             `;
         }
     }}
@@ -36,7 +35,7 @@ const StyledInput = styled.input<{
     ${({ $iconRight }) => {
         if ($iconRight) {
             return `
-                padding-right: 42px;
+                padding-right: 46px;
             `;
         }
     }}
@@ -45,6 +44,11 @@ const StyledInput = styled.input<{
     box-shadow: ${cvar("--shadow")};
     border: 1px solid ${cvar("--stroke-black")};
     border-radius: 5px;
+
+    &:disabled {
+        opacity: 0.75;
+        cursor: not-allowed;
+    }
 `;
 
 export const DefaultInput = styled(StyledInput)`

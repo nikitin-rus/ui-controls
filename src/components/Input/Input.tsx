@@ -7,16 +7,14 @@ export type InputType =
     | "error"
     | "success";
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-    variant?: InputType,
-    label?: string,
-    error?: string,
-    iconLeft?: JSX.Element,
-    iconRight?: JSX.Element,
-    isIconLeftDisabled?: boolean,
-    isIconRightDisabled?: boolean,
-    onIconLeftClick?: () => void,
-    onIconRightClick?: () => void,
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+    variant?: InputType;
+    label?: string;
+    error?: string;
+    iconLeft?: JSX.Element;
+    iconRight?: JSX.Element;
+    onIconLeftClick?: () => void;
+    onIconRightClick?: () => void;
 }
 
 function getInputComponent(type: InputType) {
@@ -37,8 +35,6 @@ const Input = memo(forwardRef<HTMLInputElement, InputProps>(
         error,
         iconLeft,
         iconRight,
-        isIconLeftDisabled = false,
-        isIconRightDisabled = false,
         onIconLeftClick,
         onIconRightClick,
         ...rest
@@ -57,7 +53,9 @@ const Input = memo(forwardRef<HTMLInputElement, InputProps>(
 
                 <S.InputForm>
                     {iconLeft && (
-                        <S.InputIconWrapperLeft>
+                        <S.InputIconWrapperLeft
+                            onClick={onIconLeftClick}
+                        >
                             {iconLeft}
                         </S.InputIconWrapperLeft>
                     )}
@@ -69,7 +67,9 @@ const Input = memo(forwardRef<HTMLInputElement, InputProps>(
                     />
 
                     {iconRight && (
-                        <S.InputIconWrapperRight>
+                        <S.InputIconWrapperRight
+                            onClick={onIconRightClick}
+                        >
                             {iconRight}
                         </S.InputIconWrapperRight>
                     )}

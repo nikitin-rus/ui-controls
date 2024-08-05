@@ -1,21 +1,15 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Input } from "../components";
+import { Search } from "../components";
 import { ChangeEvent, useState } from "react";
 
-const meta: Meta<typeof Input> = {
-    title: "Input",
-    component: Input,
+const meta: Meta<typeof Search> = {
+    title: "Search",
+    component: Search,
     args: {
-        value: "Input Text",
+        value: "Search Text",
         placeholder: "Placeholder",
         label: "Label Text",
         disabled: false,
-    },
-    argTypes: {
-        variant: {
-            options: ["default", "error", "success"],
-            control: "select",
-        },
     },
     render: ({ value: initialValue = "", ...args }) => {
         const [value, setValue] = useState(initialValue.toString());
@@ -24,9 +18,17 @@ const meta: Meta<typeof Input> = {
             setValue(e.target.value);
         }
 
-        return <Input
+        function handleSearch() { }
+
+        function handleClear() {
+            setValue("");
+        }
+
+        return <Search
             value={value}
             onChange={handleChange}
+            onClear={handleClear}
+            onSearch={handleSearch}
             {...args}
         />
     },
@@ -34,19 +36,8 @@ const meta: Meta<typeof Input> = {
 
 export default meta;
 
-type Story = StoryObj<typeof Input>;
+type Story = StoryObj<typeof Search>;
 
-export const Default: Story = {};
-
-export const Error: Story = {
-    args: {
-        variant: "error",
-        error: "Error Message"
-    }
-};
-
-export const Success: Story = {
-    args: {
-        variant: "success",
-    }
+export const Default: Story = {
+    name: "Search",
 };
