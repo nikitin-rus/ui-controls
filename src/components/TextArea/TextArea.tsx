@@ -8,7 +8,7 @@ export interface TextAreaProps
 
 const TextArea = memo(
   forwardRef<HTMLTextAreaElement, TextAreaProps>(function (
-    { label, value, onChange, ...rest },
+    { label, value, onChange = () => {}, ...rest },
     ref
   ) {
     return (

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { TextArea } from "../components";
 import { useArgs } from "@storybook/preview-api";
+import { fn } from "@storybook/test";
 
 const meta: Meta<typeof TextArea> = {
   title: "TextArea",
@@ -10,14 +11,18 @@ const meta: Meta<typeof TextArea> = {
     value: "I'm fine",
     placeholder: "What's up?",
     disabled: false,
+    onChange: fn(),
   },
   render: (args) => {
-    const [, updateArgs] = useArgs<typeof args>();
+    const [{ onChange }, updateArgs] = useArgs<typeof args>();
 
     return (
       <TextArea
         {...args}
-        onChange={(e) => updateArgs({ value: e.target.value })}
+        onChange={(e) => {
+          if (onChange) onChange(e);
+          updateArgs({ value: e.target.value });
+        }}
       />
     );
   },

@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Input } from "../components";
 import { useArgs } from "@storybook/preview-api";
+import { fn } from "@storybook/test";
 
 const meta: Meta<typeof Input> = {
   title: "Input",
@@ -10,6 +11,7 @@ const meta: Meta<typeof Input> = {
     placeholder: "Placeholder",
     label: "Label Text",
     disabled: false,
+    onChange: fn(),
   },
   argTypes: {
     variant: {
@@ -18,12 +20,15 @@ const meta: Meta<typeof Input> = {
     },
   },
   render: (args) => {
-    const [, updateArgs] = useArgs<typeof args>();
+    const [{ onChange }, updateArgs] = useArgs<typeof args>();
 
     return (
       <Input
         {...args}
-        onChange={(e) => updateArgs({ value: e.target.value })}
+        onChange={(e) => {
+          if (onChange) onChange(e);
+          updateArgs({ value: e.target.value });
+        }}
       />
     );
   },
