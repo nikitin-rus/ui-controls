@@ -1,5 +1,6 @@
 export { AppContainer } from "./AppContainer";
 export { Typography } from "./Typography";
+export { Pagination } from "./Pagination";
 export { Button } from "./Button";
 export { Input } from "./Input";
 export { Search } from "./Search";
