@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Search } from "../components";
-import { ChangeEvent, useState } from "react";
+import { useArgs } from "@storybook/preview-api";
 
 const meta: Meta<typeof Search> = {
   title: "Search",
@@ -11,15 +11,14 @@ const meta: Meta<typeof Search> = {
     label: "Label Text",
     disabled: false,
   },
-  render: ({ value: initialValue = "", ...args }) => {
-    const [value, setValue] = useState(initialValue.toString());
+  render: (args) => {
+    const [, updateArgs] = useArgs<typeof args>();
 
     return (
       <Search
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        onClear={() => setValue("")}
         {...args}
+        onChange={(e) => updateArgs({ value: e.target.value })}
+        onClear={() => updateArgs({ value: "" })}
       />
     );
   },

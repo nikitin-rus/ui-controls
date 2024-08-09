@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Pagination } from "../components";
-import { useState } from "react";
+import { useArgs } from "@storybook/preview-api";
 
 const meta: Meta<typeof Pagination> = {
   title: "Pagination",
@@ -9,14 +9,13 @@ const meta: Meta<typeof Pagination> = {
     pagesCount: 10,
     currentPage: 1,
   },
-  render: ({ currentPage: initialCurrentPage = 1, ...args }) => {
-    const [currentPage, setCurrentPage] = useState(initialCurrentPage);
+  render: (args) => {
+    const [, updateArgs] = useArgs<typeof args>();
 
     return (
       <Pagination
-        currentPage={currentPage}
-        onNavigate={(page) => setCurrentPage(page)}
         {...args}
+        onNavigate={(page) => updateArgs({ currentPage: page })}
       />
     );
   },

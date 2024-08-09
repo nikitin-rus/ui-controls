@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Limit } from "../components";
-import { useState } from "react";
+import { useArgs } from "@storybook/preview-api";
 
 const meta: Meta<typeof Limit> = {
   title: "Limit",
@@ -9,11 +9,14 @@ const meta: Meta<typeof Limit> = {
     limits: [15, 30, 50],
     limitIndex: 0,
   },
-  render: ({ limitIndex: initialLimitIndex = 0, ...args }) => {
-    const [limitIndex, setLimitIndex] = useState(initialLimitIndex);
-    
+  render: (args) => {
+    const [, updateArgs] = useArgs<typeof args>();
+
     return (
-      <Limit onLimitChange={setLimitIndex} limitIndex={limitIndex} {...args} />
+      <Limit
+        {...args}
+        onLimitChange={(limitIndex) => updateArgs({ limitIndex })}
+      />
     );
   },
 };

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Input } from "../components";
-import { useState } from "react";
+import { useArgs } from "@storybook/preview-api";
 
 const meta: Meta<typeof Input> = {
   title: "Input",
@@ -17,14 +17,13 @@ const meta: Meta<typeof Input> = {
       control: "select",
     },
   },
-  render: ({ value: initialValue = "", ...args }) => {
-    const [value, setValue] = useState(initialValue.toString());
+  render: (args) => {
+    const [, updateArgs] = useArgs<typeof args>();
 
     return (
       <Input
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
         {...args}
+        onChange={(e) => updateArgs({ value: e.target.value })}
       />
     );
   },

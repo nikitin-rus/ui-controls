@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { Select } from "../components";
-import { useState } from "react";
+import { useArgs } from "@storybook/preview-api";
 
 const meta: Meta<typeof Select> = {
   title: "Select",
@@ -25,15 +25,15 @@ const meta: Meta<typeof Select> = {
         value: "По убыванию цены",
       },
     ],
+    selectedIndex: 0,
   },
   render: (args) => {
-    const [selectedIndex, setSelectedIndex] = useState(0);
+    const [, updateArgs] = useArgs<typeof args>();
 
     return (
       <Select
-        selectedIndex={selectedIndex}
-        onSelect={(selectedIndex) => setSelectedIndex(selectedIndex)}
         {...args}
+        onSelect={(selectedIndex) => updateArgs({ selectedIndex })}
       />
     );
   },
